@@ -3,11 +3,12 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',[UserController::class,'admin_page']);
-Route::get('/user-page',[UserController::class,'user_page']);
+Route::get('/',[UserController::class,'users']);
+Route::get('/likes',[UserController::class,'likes']);
 
-Route::get('/index2',[UserController::class,'index2']);
-Route::get('/index3',[UserController::class,'index3']);
+Route::get('/products',[UserController::class,'products']);
+Route::get('/orders',[UserController::class,'orders']);
 
-Route::get('/calendar',[UserController::class,'calendar_page']);
-Route::get('/gallery',[UserController::class,'gallery_page']);
+Route::get('/posts',[UserController::class,'posts']);
+Route::get('/categories',[UserController::class,'categories']);
+Route::get('/comments',[UserController::class,'comments']);

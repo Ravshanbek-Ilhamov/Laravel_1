@@ -2,33 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Like;
+use App\Models\Order;
+use App\Models\Post;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function user_page(){
-        return view('userPage.index');
+
+    public function users(){
+        $users = User::all();
+        return view('adminPage.users',['users' => $users]);
     }
 
-    public function admin_page(){
-        return view('adminPage.index');
+    public function products(){
+        $products = Product::all();
+        return view('adminPage.products',['products' => $products]);
+    }
+    
+    public function posts(){
+        $posts = Post::all();
+        return view('adminPage.posts',['posts' => $posts]);
+    }
+
+    public function likes(){
+        $likes = Like::all();
+        return view('adminPage.likes',['likes' => $likes]);
     }
 
 
-    public function index2(){
-        return view('adminPage.index2');
+    public function orders(){
+        $orders = Order::all();
+        return view('adminPage.orders',['orders' => $orders]);
     }
 
-    public function index3(){
-        return view('adminPage.index3');
+    public function categories(){
+        $categories = Category::all();
+        return view('adminPage.categories',['categories' => $categories]);
     }
 
-    public function calendar_page(){
-        return view('adminPage.pages.calendar');
+    public function comments(){
+        $comments = Comment::all();
+        return view('adminPage.comments',['comments' => $comments]);
     }
-
-    public function gallery_page(){
-        return view('adminPage.pages.gallery');
-    }
-
 }
