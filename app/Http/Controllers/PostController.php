@@ -11,13 +11,13 @@ class PostController extends Controller
     
     public function posts(){
         $posts = Post::all();
-        return view('adminPage.posts',['posts' => $posts]);
+        return view('adminPage.post.posts',['posts' => $posts]);
     }
 
 
     public function create_page(){
         $categories = Category::all();
-        return view('adminPage.creation.post_create',['categories' => $categories]);
+        return view('adminPage.post.post_create',['categories' => $categories]);
     }
 
 
@@ -41,5 +41,19 @@ class PostController extends Controller
 
         return redirect('/posts');
     }
+
+    // PostController.php
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+        
+        if ($post) {
+            $post->delete();
+            return redirect()->back();
+        }
+
+        return redirect()->back();
+    }
+
 
 }

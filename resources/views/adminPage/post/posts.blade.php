@@ -1,6 +1,5 @@
 @extends('adminPage.layouts.main')
 
-
 @section('title', 'Index Page')
 
 @section('content')
@@ -8,8 +7,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Your content goes here -->
-        <a href="/post-create" class = 'btn btn-primary m-2'>Create</a>
+            <a href="/post-create" class='btn btn-primary m-2'>Create</a>
 
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
@@ -18,7 +16,8 @@
                         <th>Category ID</th>
                         <th>Body</th>
                         <th>Likes</th>
-                        <th>DisLikes</th>
+                        <th>Dislikes</th>
+                        <th>Actions</th> <!-- Added Actions column -->
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +28,13 @@
                             <td>{{ $item['body'] }}</td>
                             <td>{{ $item['likes'] }}</td>
                             <td>{{ $item['dislikes'] }}</td>
+                            <td>
+                                <form action="/post-delete/{{ $item['id'] }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

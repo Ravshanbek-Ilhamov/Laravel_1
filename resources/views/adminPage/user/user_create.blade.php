@@ -1,6 +1,6 @@
 @extends('adminPage.layouts.main')
 
-@section('title', 'Index Page')
+@section('title', 'User Creation')
 
 @section('content')
 
@@ -13,60 +13,65 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-
     <!-- Main content -->
     <section class="content">
-      <a href="/categories" class = 'btn btn-primary m-2'>Category</a>
+      <a href="/" class="btn btn-primary m-2">Users</a>
+      @if ($errors->any())
+      <ul>
+        @foreach ($errors->all() as $item)
+            <div class="alert laert-danger">
+              <h5>{{$item}}</h5>
+            </div>
+        @endforeach
+      
+      
+      </ul>    
+
+    @endif
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
-
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Quick Example</h3>
+                <h3 class="card-title">Create New User</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="/category_creation" method="POST">
+              <form action="/user_creation" method="POST">
                 @csrf
                 <div class="card-body">
+                  
+                  <!-- Name -->
                   <div class="form-group">
-                    <label for="exampleInputName1">Name</label>
-                    <input type="text" class="form-control" name="name" id="exampleInputName1" placeholder="Name:">
+                    <label for="exampleName">Name</label>
+                    <input type="text" class="form-control" name="name" id="exampleName" placeholder="Enter user name">
                   </div>
+
+                  <!-- Email -->
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Tarib Raqam</label>
-                    <input type="number" class="form-control" name="tr" id="exampleInputName1" placeholder="Tartib Raqam:">
+                    <label for="exampleEmail">Email</label>
+                    <input type="email" class="form-control" name="email" id="exampleEmail" placeholder="Enter user email">
                   </div>
+
+                  <!-- Password -->
                   <div class="form-group">
-                    <label for="exampleInputActive1">Active:</label>
-                    <select class="select" name="active" id="exampleInputActive1">
-                      <option value="1">True</option>
-                      <option value="0">False</option>
-                    </select>
-                   </div>
-                  {{-- <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                  </div> --}}
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <label for="examplePassword">Password</label>
+                    <input type="password" class="form-control" name="password" id="examplePassword" placeholder="Enter password">
                   </div>
+
+                  <!-- Email Verified At -->
+                  <div class="form-group">
+                    <label for="exampleEmailVerifiedAt">Email Verified At</label>
+                    <input type="datetime-local" class="form-control" name="email_verified_at" id="exampleEmailVerifiedAt" value="{{ now()->format('Y-m-d\TH:i') }}">
+                  </div>
+
                 </div>
                 <!-- /.card-body -->
+                
                 <div class="card-footer">
-                  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </form>
             </div>
@@ -96,6 +101,5 @@
     bsCustomFileInput.init();
   });
 </script>
-
 
 @endsection

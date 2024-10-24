@@ -18,6 +18,7 @@
                         <th>Post ID</th>
                         <th>User ID</th>
                         <th>Like Or DisLike</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,13 @@
                             <td>{{ $item['post_id'] }}</td>
                             <td>{{ $item['user_id'] }}</td>
                             <td>{{ $item['is_active'] }}</td>
+                            <td>
+                                <form action="/like-delete/{{ $item['id'] }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

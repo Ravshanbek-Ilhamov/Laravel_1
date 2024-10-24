@@ -13,14 +13,14 @@ class LikeController extends Controller
 
     public function likes(){
         $likes = Like::all();
-        return view('adminPage.likes',['likes' => $likes]);
+        return view('adminPage.like.likes',['likes' => $likes]);
     }
 
 
     public function create_page(){
         $posts = Post::all();
         $users = User::all();
-        return view('adminPage.creation.like_create',['posts' => $posts,'users' => $users]);
+        return view('adminPage.like.like_create',['posts' => $posts,'users' => $users]);
     }
 
     public function store(Request $request)
@@ -40,6 +40,19 @@ class LikeController extends Controller
     
         return redirect('/likes');
     }
+
+    public function destroy($id)
+    {
+        $like = Like::find($id);
+        
+        if ($like) {
+            $like->delete();
+            return redirect()->back();
+        }
+
+        return redirect()->back();
+    }
+
     
 
 }

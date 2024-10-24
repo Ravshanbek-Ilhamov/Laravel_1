@@ -1,6 +1,5 @@
 @extends('adminPage.layouts.main')
 
-
 @section('title', 'Index Page')
 
 @section('content')
@@ -8,7 +7,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Your content goes here -->
+            <a href="/user-create" class='btn btn-primary m-2'>Create</a>
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -16,6 +15,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Password</th>
+                        <th>Actions</th> <!-- Added Actions column -->
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +25,13 @@
                             <td>{{ $item['name'] }}</td>
                             <td>{{ $item['email'] }}</td>
                             <td>{{ $item['password'] }}</td>
+                            <td>
+                                <form action="/user-delete/{{ $item['id'] }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

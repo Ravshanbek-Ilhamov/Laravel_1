@@ -11,12 +11,12 @@ class CommentController extends Controller
     
     public function comments(){
         $comments = Comment::all();
-        return view('adminPage.comments',['comments' => $comments]);
+        return view('adminPage.comment.comments',['comments' => $comments]);
     }
 
     public function create_page(){
         $posts = Post::all();
-        return view('adminPage.creation.comment_create',['posts' => $posts]);
+        return view('adminPage.comment.comment_create',['posts' => $posts]);
     }
 
     public function store(Request $request){
@@ -36,6 +36,14 @@ class CommentController extends Controller
         $comment->save();
 
         return redirect('/comments');
+    }
+    
+    public function destroy($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
+
+        return redirect('/comments')->with('success', 'Comment deleted successfully');
     }
 
 }

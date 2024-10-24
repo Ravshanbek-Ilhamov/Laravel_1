@@ -13,13 +13,13 @@ class OrderController extends Controller
 
     public function orders(){
         $orders = Order::all();
-        return view('adminPage.orders',['orders' => $orders]);
+        return view('adminPage.order.orders',['orders' => $orders]);
     }
 
     public function create_page(){
         $products = Product::all();
         $users = User::all();
-        return view('adminPage.creation.order_create',['products' => $products,'users' => $users]);
+        return view('adminPage.order.order_create',['products' => $products,'users' => $users]);
     }
 
     public function store(Request $request)
@@ -46,6 +46,20 @@ class OrderController extends Controller
     
         return redirect('/orders');
     }
+
+    // OrderController.php
+    public function destroy($id)
+    {
+        $order = Order::find($id);
+        
+        if ($order) {
+            $order->delete();
+            return redirect()->back()->with('success', 'Order deleted successfully!');
+        }
+
+        return redirect()->back()->with('error', 'Order not found.');
+    }
+
         
 
 }

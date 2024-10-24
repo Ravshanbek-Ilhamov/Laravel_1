@@ -19,6 +19,7 @@
                         <th>Product ID</th>
                         <th>Count</th>
                         <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +31,13 @@
                             <td>{{ $item['product_id'] }}</td>
                             <td>{{ $item['count'] }}</td>
                             <td>{{ $item['status'] }}</td>
+                            <td>
+                                <form action="/order-delete/{{ $item['id'] }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
