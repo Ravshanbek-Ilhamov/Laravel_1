@@ -9,6 +9,8 @@
     <section class="content">
         <div class="container-fluid">
             <!-- Your content goes here -->
+        <a href="/product-create" class = 'btn btn-primary m-2'>Create</a>
+
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>

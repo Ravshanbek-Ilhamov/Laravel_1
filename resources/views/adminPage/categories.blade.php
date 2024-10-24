@@ -7,6 +7,7 @@
 <div class="content-wrapper">
     <!-- Main content -->
     <section class="content">
+        <a href="/category-create" class = 'btn btn-primary m-2'>Create</a>
         <div class="container-fluid">
             <!-- Your content goes here -->
             <table class="table table-striped table-bordered">
@@ -25,7 +26,6 @@
                             <td>{{ $item['tr'] }}</td>
                             <td>{{ $item['name'] }}</td>
                             <td>{{ $item['active'] }}</td>
-
                         </tr>
                     @endforeach
                 </tbody>

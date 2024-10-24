@@ -1,6 +1,5 @@
 @extends('adminPage.layouts.main')
 
-
 @section('title', 'Index Page')
 
 @section('content')
@@ -8,6 +7,8 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+        <a href="/comment-create" class = 'btn btn-primary m-2'>Create</a>
+
             <!-- Your content goes here -->
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
