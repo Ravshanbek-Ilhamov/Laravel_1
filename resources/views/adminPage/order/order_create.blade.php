@@ -11,96 +11,103 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="<?= asset('dist/css/adminlte.min.css'); ?>">
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <a href="/orders" class = 'btn btn-primary m-2'>Orders</a>
-        @if ($errors->any())
-          <ul>
-            @foreach ($errors->all() as $item)
-                <div class="alert laert-danger">
-                  <h5>{{$item}}</h5>
+        <div class="container-fluid">
+            <a href="/orders" class='btn btn-primary m-2'>Orders</a>
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Create Order</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form action="/order_creation" method="POST">
+                            @csrf
+                            <div class="card-body">
+                                <!-- Client Selection -->
+                                <div class="form-group">
+                                    <label for="clientSelect">Client</label>
+                                    <select class="form-control" name="client_id" id="clientSelect" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da;">
+                                        @foreach ($users as $item)
+                                            <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('client_id')
+                                        <label style="color: red" for="clientSelect">{{ $message }}</label>
+                                    @enderror
+                                </div>
+
+                                <!-- Seller Selection -->
+                                <div class="form-group">
+                                    <label for="sellerSelect">Seller</label>
+                                    <select class="form-control" name="seller_id" id="sellerSelect" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da;">
+                                        @foreach ($users as $item)
+                                            <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('seller_id')
+                                        <label style="color: red" for="sellerSelect">{{ $message }}</label>
+                                    @enderror
+                                </div>
+
+                                <!-- Product Selection -->
+                                <div class="form-group">
+                                    <label for="productSelect">Product</label>
+                                    <select class="form-control" name="product_id" id="productSelect" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da;">
+                                        @foreach ($products as $item)
+                                            <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('product_id')
+                                        <label style="color: red" for="productSelect">{{ $message }}</label>
+                                    @enderror
+                                </div>
+
+                                <!-- Quantity Input -->
+                                <div class="form-group">
+                                    <label for="quantityInput">Quantity</label>
+                                    <input type="number" class="form-control" name="quantity" id="quantityInput" placeholder="Enter Quantity" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da;">
+                                    @error('quantity')
+                                        <label style="color: red" for="quantityInput">{{ $message }}</label>
+                                    @enderror
+                                </div>
+
+                                <!-- Status Selection -->
+                                <div class="form-group">
+                                    <label for="statusSelect">Status</label>
+                                    <select class="form-control" name="status" id="statusSelect" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da;">
+                                        <option value="pending">Pending</option>
+                                        <option value="delivered">Delivered</option>
+                                        <option value="preparing">Preparing</option>
+                                    </select>
+                                    @error('status')
+                                        <label style="color: red" for="statusSelect">{{ $message }}</label>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
                 </div>
-            @endforeach
-          
-          
-          </ul>    
-
-        @endif
-        <div class="row">
-          <!-- left column -->
-          <div class="col-md-12">
-
-            <!-- general form elements -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Quick Example</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form action="/order_creation" method="POST">
-                @csrf
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputClient1">Client</label>
-                    <select class="form-control" name="client_id" id="exampleInputClient1" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da;">
-                      @foreach ($users as $item)
-                      <option value="{{$item['id']}}">{{$item['name']}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputseller1">Seller</label>
-                    <select class="form-control" name="seller_id" id="exampleInputseller1" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da;">
-                      @foreach ($users as $item)
-                      <option value="{{$item['id']}}">{{$item['name']}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputProduct1">Product</label>
-                    <select class="form-control" name="product_id" id="exampleInputProduct1" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da;">
-                      @foreach ($products as $item)
-                      <option value="{{$item['id']}}">{{$item['name']}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Quantity:</label>
-                    <input type="number" class="form-control" name="quantity" id="exampleInputName1" placeholder="Quantity:" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da;">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputActive1">Status:</label>
-                    <select class="form-control" name="status" id="exampleInputActive1" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da;">
-                      <option value="pending">Pending</option>
-                      <option value="delivered">Delivered</option>
-                      <option value="preparing">Preparing</option>
-                    </select>
-                  </div>
-
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                </div>
-
-              </form>
+                <!--/.col (left) -->
             </div>
-            <!-- /.card -->
-          </div>
-          <!--/.col (left) -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-  </div>
+</div>
 
 <!-- jQuery -->
 <script src="<?= asset('plugins/jquery/jquery.min.js'); ?>"></script>

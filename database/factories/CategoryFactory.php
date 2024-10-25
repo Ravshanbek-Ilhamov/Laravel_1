@@ -18,7 +18,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'tr' => fake()->numberBetween(0,10),
+            'tr' => fake()->numberBetween(1,10),
             'active' =>fake()->boolean(),
         ];
     }

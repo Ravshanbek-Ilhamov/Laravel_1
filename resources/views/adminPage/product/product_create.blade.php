@@ -27,7 +27,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="/product_creation" method="POST">
+              <form action="/product_creation" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                   <!-- User ID -->
@@ -38,6 +38,9 @@
                       <option value="{{ $user['id'] }}">{{ $user['name'] }}</option>
                       @endforeach
                     </select>
+                    @error('user_id')
+                      <label style="color: red" for="exampleUserId">{{$message}}</label>
+                    @enderror
                   </div>
 
                   <!-- Category ID -->
@@ -48,30 +51,53 @@
                       <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                       @endforeach
                     </select>
+                    @error('category_id')
+                      <label style="color: red" for="exampleCategory_id">{{$message}}</label>
+                    @enderror
                   </div>
 
                   <!-- Name -->
                   <div class="form-group">
                     <label for="exampleName">Product Name</label>
                     <input type="text" class="form-control" name="name" id="exampleName" placeholder="Enter product name">
+                    @error('name')
+                      <label style="color: red" for="exampleName">{{$message}}</label>
+                    @enderror
                   </div>
 
                   <!-- Price -->
                   <div class="form-group">
                     <label for="examplePrice">Price</label>
                     <input type="number" class="form-control" name="price" id="examplePrice" placeholder="Enter product price">
+                    @error('price')
+                      <label style="color: red" for="examplePrice">{{$message}}</label>
+                    @enderror
                   </div>
 
                   <!-- Image -->
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label for="exampleImage">Image URL</label>
                     <input type="text" class="form-control" name="image" id="exampleImage" placeholder="Enter product image URL">
-                  </div>
+                    @error('image')
+                      <label style="color: red" for="exampleImage">{{$message}}</label>
+                    @enderror
+                  </div> --}}
+
+                  <div class="form-group">
+                    <label for="exampleimage">Image</label>
+                    <input type="file" class="form-control" name="image" id="exampleimage">
+                    @error('image')
+                        <label style="color: red" for="exampleimage">{{ $message }}</label>
+                    @enderror
+                </div>
 
                   <!-- Count -->
                   <div class="form-group">
                     <label for="exampleCount">Count</label>
                     <input type="number" class="form-control" name="count" id="exampleCount" placeholder="Enter product count">
+                    @error('count')
+                      <label style="color: red" for="exampleCount">{{$message}}</label>
+                    @enderror
                   </div>
 
                   <!-- Premium -->
@@ -82,6 +108,9 @@
                       <option value="1">Yes</option>
                     </select>
                   </div>
+                  @error('premium')
+                    <label style="color: red" for="examplePremium">{{$message}}</label>
+                  @enderror
                 </div>
                 <!-- /.card-body -->
                 

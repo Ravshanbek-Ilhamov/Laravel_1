@@ -16,26 +16,41 @@
                         <form action="/category_creation" method="POST">
                             @csrf
                             <div class="card-body">
+                                <!-- Name Field -->
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter Category Name" required>
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter Category Name" value="{{ old('name') }}">
+                                    @error('name')
+                                        <label style="color: red" for="name">{{ $message }}</label>
+                                    @enderror
                                 </div>
+                        
+                                <!-- Tartib Raqam (TR) Field -->
                                 <div class="form-group">
                                     <label for="tr">Tartib Raqam</label>
-                                    <input type="number" name="tr" class="form-control" id="tr" placeholder="Enter Tartib Raqam" required>
+                                    <input type="number" name="tr" class="form-control" id="tr" placeholder="Enter Tartib Raqam" value="{{ old('tr') }}">
+                                    @error('tr')
+                                        <label style="color: red" for="tr">{{ $message }}</label>
+                                    @enderror
                                 </div>
+                        
+                                <!-- Active Field -->
                                 <div class="form-group">
                                     <label for="active">Active</label>
                                     <select name="active" class="form-control" id="active">
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="1" {{ old('active') == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ old('active') == '0' ? 'selected' : '' }}>No</option>
                                     </select>
+                                    @error('active')
+                                        <label style="color: red" for="active">{{ $message }}</label>
+                                    @enderror
                                 </div>
                             </div>
+                        
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Create</button>
                             </div>
-                        </form>
+                        </form>                        
                     </div>
                 </div>
             </div>

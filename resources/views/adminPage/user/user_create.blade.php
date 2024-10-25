@@ -16,18 +16,6 @@
     <!-- Main content -->
     <section class="content">
       <a href="/" class="btn btn-primary m-2">Users</a>
-      @if ($errors->any())
-      <ul>
-        @foreach ($errors->all() as $item)
-            <div class="alert laert-danger">
-              <h5>{{$item}}</h5>
-            </div>
-        @endforeach
-      
-      
-      </ul>    
-
-    @endif
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
@@ -47,24 +35,36 @@
                   <div class="form-group">
                     <label for="exampleName">Name</label>
                     <input type="text" class="form-control" name="name" id="exampleName" placeholder="Enter user name">
+                    @error('name')
+                      <label style="color: red" for="exampleName">{{ $message }}</label>
+                    @enderror
                   </div>
 
                   <!-- Email -->
                   <div class="form-group">
                     <label for="exampleEmail">Email</label>
                     <input type="email" class="form-control" name="email" id="exampleEmail" placeholder="Enter user email">
+                    @error('email')
+                      <label style="color: red" for="exampleEmail">{{ $message }}</label>
+                    @enderror
                   </div>
 
                   <!-- Password -->
                   <div class="form-group">
                     <label for="examplePassword">Password</label>
                     <input type="password" class="form-control" name="password" id="examplePassword" placeholder="Enter password">
+                    @error('password')
+                      <label style="color: red" for="examplePassword">{{ $message }}</label>
+                    @enderror
                   </div>
 
                   <!-- Email Verified At -->
                   <div class="form-group">
                     <label for="exampleEmailVerifiedAt">Email Verified At</label>
                     <input type="datetime-local" class="form-control" name="email_verified_at" id="exampleEmailVerifiedAt" value="{{ now()->format('Y-m-d\TH:i') }}">
+                    @error('email_verified_at')
+                      <label style="color: red" for="exampleEmailVerifiedAt">{{ $message }}</label>
+                    @enderror
                   </div>
 
                 </div>

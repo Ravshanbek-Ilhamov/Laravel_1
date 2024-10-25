@@ -120,12 +120,14 @@
                           <p>Users</p>
                       </a>
                   </li>
+
                   <li class="nav-item">
                       <a href="{{ url('/products') }}" class="nav-link {{ request()->is('products') ? 'active' : '' }}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Products</p>
                       </a>
                   </li>
+
                   <li class="nav-item">
                       <a href="{{ url('/orders') }}" class="nav-link {{ request()->is('orders') ? 'active' : '' }}">
                           <i class="far fa-circle nav-icon"></i>
@@ -138,7 +140,7 @@
                         <i class="far fa-circle nav-icon"></i>
                         <p>Posts</p>
                     </a>
-                </li>
+                  </li>
 
                 <li class="nav-item">
                   <a href="{{ url('/likes') }}" class="nav-link {{ request()->is('likes') ? 'active' : '' }}">
@@ -152,13 +154,29 @@
                       <i class="far fa-circle nav-icon"></i>
                       <p>Categories</p>
                   </a>
-              </li>
+                </li>
+                
               <li class="nav-item">
                 <a href="{{ url('/comments') }}" class="nav-link {{ request()->is('comments') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Comments</p>
                 </a>
-            </li>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ url('/companies') }}" class="nav-link {{ request()->is('companies') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Companies</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ url('/company-products') }}" class="nav-link {{ request()->is('company-products') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Company-Products</p>
+                </a>
+              </li>
+
               </ul>
           </li>
       </ul>
@@ -409,7 +427,6 @@
       });
     });
   </script>
-
       <!-- jQuery -->
       <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
       <!-- Bootstrap Bundle with Popper -->

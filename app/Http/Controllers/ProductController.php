@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductStoreRequest;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -22,42 +24,36 @@ class ProductController extends Controller
     }
 
 
-    public function store(Request $request){
-        $request->validate([
-            'user_id' => 'required|integer|exists:users,id',
-            'category_id' => 'required|integer|exists:categories,id',
-            'name' => 'required|string|max:255',
-            'price' => 'required|integer|min:0',
-            'image' => 'required|string|max:255',
-            'count' => 'required|integer|min:0',
-            'premium' => 'required|boolean',
-        ]);
-
-        $product = new Product();
-        $product->user_id = $request->user_id;
-        $product->category_id = $request->category_id;
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->image = $request->image;
-        $product->count = $request->count;
-        $product->premium = $request->premium;
-
-        $product->save();
-
-        return redirect('/products');
-    }
-
-    public function destroy($id)
-    {
-        $product = Product::find($id);
-        
-        if ($product) {
-            $product->delete();
-            return redirect()->back();
+    public function store(ProductStoreRequest $request){
+    
+        $data = $request->all();
+    
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = date('y-m-d') . '_' . time() . '.' . $extension;
+            $file->move('product_images/', $filename);
+            $data['image'] = 'product_images/' . $filename; // Set image path in $data
         }
-
-        return redirect()->back();
+    
+        Product::create($data);
+    
+        return redirect('/products')->with('success', 'Product created successfully!');
     }
+    
+    public function destroy(Product $product){
+        try {
+            if ($product) {
+                $product->delete();
+                return redirect()->back()->with('success', 'Product deleted successfully');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to delete product');
+        }
+    
+        return redirect()->back()->with('error', 'Product not found');
+    }
+    
 
 
 }

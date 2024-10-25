@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryStoreRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -15,41 +16,40 @@ class CategoryController extends Controller
     
     public function create_page(){
         return view('adminPage.category.category_create');
-    }
+    } 
+       
+    public function store(CategoryStoreRequest $request){
+        try {
+            if ($request->id) {
+                $category = Category::find($request->id);
+            } else {
+                $category = new Category();
+            } 
 
-    public function store(Request $request){
-        $request->validate(
-            [
-            'name' => 'required|max:255',
-            'tr' => 'required',
-            'active' => 'required'
-            ]);
+            $category->name = $request->name;
+            $category->tr = $request->tr;
+            $category->active = $request->active;
+            $category->save();
 
-        if ($request->id) {
-            $category = Category::find($request->id);
-        } else {
-            $category = new Category();
+            session()->flash('success', 'Category saved successfully!');
+        } catch (\Exception $e) {
+            session()->flash('error', 'There was an issue saving the category.');
         }
 
-        $category->name = $request->name;
-        $category->tr = $request->tr;
-        $category->active = $request->active;
-        $category->save();
-
         return redirect('/categories');
-    }   
+    }     
     
-    public function edit($id)
-    {
-        $category = Category::find($id);
+    public function edit(Category $category){
         return view('adminPage.category.category_edit', compact('category'));
     }
 
-    public function destroy($id)
-    {
-        $category = Category::find($id);
-        $category->delete();
-
+    public function destroy(Category $category){
+        try {
+            $category->delete();
+            session()->flash('success', 'Category deleted successfully!');
+        } catch (\Exception $e) {
+            session()->flash('error', 'There was an issue deleting the category.');
+        }
         return redirect('/categories');
     }
 }
