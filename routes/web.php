@@ -19,16 +19,18 @@ Route::get('/category-edit/{category}', [CategoryController::class, 'edit']);
 Route::delete('/category-delete/{category}', [CategoryController::class, 'destroy']);
 
 #orders
-Route::get('/orders',[OrderController::class,'orders']);
+Route::get('/orders',[OrderController::class,'orders'])->name('order.index');
 Route::get('/order-create',[OrderController::class,'create_page']);
 Route::post('/order_creation',[OrderController::class,'store']);
+Route::put('/order_update/{order}',[OrderController::class,'update'])->name('order.update');
 Route::delete('/order-delete/{order}', [OrderController::class, 'destroy']);
 
 
 #users
-Route::get('/',[UserController::class,'users']);
+Route::get('/',[UserController::class,'users'])->name('user.index');
 Route::get('/user-create',[UserController::class,'create_page']);
 Route::post('/user_creation',[UserController::class,'store']);
+Route::put('/user_update/{user}',[UserController::class,'update'])->name('user.update');
 Route::delete('/user-delete/{user}', [UserController::class, 'destroy'])->name('user.delete');
 
 
@@ -61,14 +63,16 @@ Route::delete('/comment-delete/{comment}', [CommentController::class, 'destroy']
 
 
 #companies
-Route::get('/companies',[CompanyController::class,'index']);
+Route::get('/companies',[CompanyController::class,'index'])->name('company.index');
 Route::get('/company-create',[CompanyController::class,'create']);
 Route::post('/company_creation',[CompanyController::class,'store']);
+Route::put('/company_update/{company}',[CompanyController::class,'update'])->name('company.update');
 Route::delete('/company-delete/{company}', [CompanyController::class, 'destroy']);
 
 
 #companyProducts
-Route::get('/company-products',[CompanyProductController::class,'index']);
+Route::get('/company-products',[CompanyProductController::class,'index'])->name('companyProduct.index');
 Route::get('/company-products-create',[CompanyProductController::class,'create']);
 Route::post('/company-products_creation',[CompanyProductController::class,'store']);
+Route::put('/company-products_update/{companyProduct}',[CompanyProductController::class,'update'])->name('companyProducts.update');
 Route::delete('/company-products-delete/{companyProduct}', [CompanyProductController::class, 'destroy']);

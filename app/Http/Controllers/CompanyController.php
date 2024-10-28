@@ -6,18 +6,27 @@ use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
 use App\Models\User;
+// use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
+
 
 class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+    public function index(Request $request)
     {
-        $companies = Company::all();
-        return view('companyWork.company.company',['companies' => $companies]);
-        
+        $search = $request->input('search');
+    
+        $companies = Company::when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%{$search}%");
+        })->paginate(10);
+    
+        return view('companyWork.company.company', ['companies' => $companies]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -64,7 +73,10 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompanyRequest $request, Company $company)
     {
-        //
+        // dd($request,$company);
+        $company->update($request->validated());
+    
+        return redirect()->route('company.index')->with('success', 'Company updated successfully');
     }
 
     /**

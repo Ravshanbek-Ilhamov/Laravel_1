@@ -9,7 +9,7 @@ class CompanyProduct extends Model
 {
     use HasFactory;
         protected $fillable = [
-        'company_id',  // Add this field
+        'company_id',  
         'name',
         'price',
         'image_path',

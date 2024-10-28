@@ -116,11 +116,25 @@
               <ul class="nav nav-treeview">
                   <li class="nav-item">
                       <a href="{{ url('/') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
-                          <i class="far fa-circle nav-icon"></i>
+                            <i class="far fa-circle nav-icon"></i>
                           <p>Users</p>
                       </a>
                   </li>
 
+                  <li class="nav-item">
+                    <a href="{{ url('/companies') }}" class="nav-link {{ request()->is('companies') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Companies</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{ url('/company-products') }}" class="nav-link {{ request()->is('company-products') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Company-Products</p>
+                    </a>
+                  </li>
+                  <hr>
                   <li class="nav-item">
                       <a href="{{ url('/products') }}" class="nav-link {{ request()->is('products') ? 'active' : '' }}">
                           <i class="far fa-circle nav-icon"></i>
@@ -160,20 +174,6 @@
                 <a href="{{ url('/comments') }}" class="nav-link {{ request()->is('comments') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Comments</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{ url('/companies') }}" class="nav-link {{ request()->is('companies') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Companies</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{ url('/company-products') }}" class="nav-link {{ request()->is('company-products') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Company-Products</p>
                 </a>
               </li>
 

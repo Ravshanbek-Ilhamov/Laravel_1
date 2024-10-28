@@ -11,7 +11,7 @@ class UpdateCompanyProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateCompanyProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'company_id' => 'integer',
+            'name' => 'string|max:255',
+            'price' => 'numeric',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }

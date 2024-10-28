@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderStoreRequest;
-use App\Models\Category;
+use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
 
     public function orders(){
-        $orders = Order::all();
-        return view('adminPage.order.orders',['orders' => $orders]);
+        $orders = Order::all()->pagination();
+        $products = Product::all();
+        $users = User::all();
+        return view('adminPage.order.orders',['orders' => $orders,'products' => $products,'users' => $users]);
     }
 
     public function create_page(){
@@ -41,7 +42,12 @@ class OrderController extends Controller
         }
     }
     
-
+    public function update(UpdateOrderRequest $request, Order $order){
+        $order->update($request->validated());
+    
+        return redirect()->route('order.index')->with('success', 'Order updated successfully');
+    }
+    
     public function destroy(Order $order){
         if ($order) {
             $order->delete();
