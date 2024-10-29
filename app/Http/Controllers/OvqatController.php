@@ -31,7 +31,6 @@ class OvqatController extends Controller
      */
     public function store(Request $request)
     {
-    //      dd($request->all());
        $request->validate([
         'name' => 'required|max:255',
         'ids' => 'array',
@@ -41,7 +40,6 @@ class OvqatController extends Controller
        $ids = $data['ids'];
        unset($data['ids']);
        $ovqat = Ovqat::create($data);
-    //    dd($ovqat);
        $ovqat->massalliq()->attach($ids);
 
        return back();

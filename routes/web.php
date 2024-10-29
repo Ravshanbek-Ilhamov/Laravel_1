@@ -29,7 +29,7 @@ Route::delete('/order-delete/{order}', [OrderController::class, 'destroy']);
 
 
 #users
-Route::get('/',[UserController::class,'users'])->name('user.index');
+Route::get('/user',[UserController::class,'users'])->name('user.index');
 Route::get('/user-create',[UserController::class,'create_page']);
 Route::post('/user_creation',[UserController::class,'store']);
 Route::put('/user_update/{user}',[UserController::class,'update'])->name('user.update');
@@ -82,7 +82,8 @@ Route::delete('/company-products-delete/{companyProduct}', [CompanyProductContro
 
 
 // ingredients
-Route::get('/ingredients',[MassalliqController::class,'index'])->name('massalliq.index');
+Route::get('/',[MassalliqController::class,'index'])->name('massalliq.index');
+// Route::get('/ingredients',[MassalliqController::class,'index'])->name('massalliq.index');
 
 
 // food

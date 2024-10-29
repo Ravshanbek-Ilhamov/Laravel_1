@@ -180,7 +180,7 @@
             {{-- last --}}
 
                 <li class="nav-item">
-                  <a href="{{ url('/ingredients') }}" class="nav-link {{ request()->is('ingredients') ? 'active' : '' }}">
+                  <a href="{{ url('/') }}" class="nav-link {{ request()->is(' ') ? 'active' : '' }}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Massalliq</p>
                   </a>
