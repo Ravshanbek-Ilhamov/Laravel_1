@@ -5,7 +5,9 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompanyProductController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MassalliqController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OvqatController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -32,6 +34,7 @@ Route::get('/user-create',[UserController::class,'create_page']);
 Route::post('/user_creation',[UserController::class,'store']);
 Route::put('/user_update/{user}',[UserController::class,'update'])->name('user.update');
 Route::delete('/user-delete/{user}', [UserController::class, 'destroy'])->name('user.delete');
+Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
 
 
 #likes
@@ -76,3 +79,19 @@ Route::get('/company-products-create',[CompanyProductController::class,'create']
 Route::post('/company-products_creation',[CompanyProductController::class,'store']);
 Route::put('/company-products_update/{companyProduct}',[CompanyProductController::class,'update'])->name('companyProducts.update');
 Route::delete('/company-products-delete/{companyProduct}', [CompanyProductController::class, 'destroy']);
+
+
+// ingredients
+Route::get('/ingredients',[MassalliqController::class,'index'])->name('massalliq.index');
+
+
+// food
+Route::get('/food',[OvqatController::class,'index'])->name('ovqat.index');
+Route::get('/ovqat_create',[OvqatController::class,'create'])->name('ovqat.create');
+Route::post('/food_store',[OvqatController::class,'store'])->name('ovqat.store');
+
+
+
+// foodIngred
+Route::get('/foodIngred',[OvqatController::class,'index'])->name('ovqatmass.index');
+

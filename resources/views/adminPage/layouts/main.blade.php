@@ -114,7 +114,8 @@
           <!-- Dashboard Menu -->
           <li class="nav-item menu-open">
               <ul class="nav nav-treeview">
-                  <li class="nav-item">
+              {{-- last --}}
+                  {{-- <li class="nav-item">
                       <a href="{{ url('/') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                           <p>Users</p>
@@ -170,13 +171,27 @@
                   </a>
                 </li>
                 
-              <li class="nav-item">
-                <a href="{{ url('/comments') }}" class="nav-link {{ request()->is('comments') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Comments</p>
-                </a>
-              </li>
+                <li class="nav-item">
+                  <a href="{{ url('/comments') }}" class="nav-link {{ request()->is('comments') ? 'active' : '' }}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Comments</p>
+                  </a>
+                </li> --}}
+            {{-- last --}}
 
+                <li class="nav-item">
+                  <a href="{{ url('/ingredients') }}" class="nav-link {{ request()->is('ingredients') ? 'active' : '' }}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Massalliq</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ url('/food') }}" class="nav-link {{ request()->is('food') ? 'active' : '' }}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Ovqat</p>
+                  </a>
+                </li>
               </ul>
           </li>
       </ul>
@@ -456,5 +471,13 @@
           });
         });
 </script>
+<script>
+  mobiscroll.select('#multiple-select', {
+    inputElement: document.getElementById('my-input'),
+    touchUi: false
+});
+
+</script>
+
   </body>
   </html>

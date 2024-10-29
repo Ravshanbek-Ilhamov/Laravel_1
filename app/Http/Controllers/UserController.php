@@ -24,7 +24,6 @@ class UserController extends Controller
     }
     
     
-
     public function create_page(){
         return view('adminPage.user.user_create');
     }
@@ -46,10 +45,10 @@ class UserController extends Controller
     }
 
     public function update(UpdateUserRequest $request, User $user){
-        // dd($request->all(),$user);
+        dd($request->all(),$user);
         $user->update($request->validated());
     
-        return redirect()->route('user.index')->with('success', 'Order updated successfully');
+        return redirect()->route('user.index')->with('success', 'User updated successfully');
     }
     
     public function destroy(User $user){
@@ -61,4 +60,14 @@ class UserController extends Controller
         return redirect()->back()->with('error', 'User not found.');
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        
+        $users = User::where('name', 'LIKE', "%{$query}%")
+                     ->orWhere('email', 'LIKE', "%{$query}%")
+                     ->get();
+    
+        return response()->json(['data' => $users]);
+    }
 }

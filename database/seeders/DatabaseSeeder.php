@@ -7,7 +7,10 @@ use App\Models\Comment;
 use App\Models\Company;
 use App\Models\CompanyProduct;
 use App\Models\Like;
+use App\Models\Massalliq;
 use App\Models\Order;
+use App\Models\Ovqat;
+use App\Models\OvqatMassalliq;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\User;
@@ -37,6 +40,21 @@ class DatabaseSeeder extends Seeder
             ProductTableSeeder::class,
             LikeTableSeeder::class,
             OrderTableSeeder::class,
+            // OvqatSeeder::class,
+            // MassalliqSeeder::class,
+            // OvqatMassalliqSeeder::class,
         ]);
+
+        for ($i=1; $i <=10 ; $i++) { 
+            Ovqat::create(['name' => 'Ovqat ' . $i]);
+        }
+
+        for ($i=1; $i <=10 ; $i++) { 
+            Massalliq::create(['name' => 'Massalliq ' . $i]);
+        }
+
+        for ($i=1; $i <=100 ; $i++) { 
+            OvqatMassalliq::create(['ovqat_id' => rand(1,10),'massalliq_id' => rand(1,10)]);
+        }
     }
 }

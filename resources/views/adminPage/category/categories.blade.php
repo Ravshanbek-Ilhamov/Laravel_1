@@ -31,8 +31,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $item)
-                        <tr>
+                    @foreach ($categories as $category)
+                    <p>Category:{{$category->name}},Count:{{$category->posts->count()}}</p>
+                    @php
+                        $a = 1;
+                    @endphp
+                    @foreach ($category->posts as $post)
+                      <li>{{$a}}.{{$post->title}}</li>
+                      @php
+                          $a++;
+                      @endphp
+                        {{-- <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->tr }}</td>
                             <td>{{ $item->name }}</td>
@@ -45,7 +54,8 @@
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                 </form>
                             </td>
-                        </tr>
+                        </tr> --}}
+                        @endforeach
                         @endforeach
                     </tbody>
                 </table>

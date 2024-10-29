@@ -12,6 +12,8 @@ class CategoryController extends Controller
 
     public function categories(){
         $categories = Category::all();
+        // $post = $categories->posts;
+        // dd($post);
         return view('adminPage.category.categories',['categories' => $categories]);
     }
     

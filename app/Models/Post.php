@@ -9,4 +9,8 @@ class Post extends Model
 {
     protected $table = 'posts';
     use HasFactory;
+
+    public function category(){
+        return $this->belongsTo(Category::class,'id','category_id');
+    }   
 }
