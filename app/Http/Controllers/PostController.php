@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class PostController extends Controller
 {
     
     public function posts(){
-        $posts = Post::all();
+        $posts = Post::paginate(10);
         return view('adminPage.post.posts',['posts' => $posts]);
     }
 
@@ -19,6 +20,25 @@ class PostController extends Controller
         $categories = Category::all();
         return view('adminPage.post.post_create',['categories' => $categories]);
     }
+
+    public function edit($id) {
+        $categories = Category::all();
+        $post = Post::find($id);
+        return view('adminPage.post.post_edit', [
+            'post' => $post,
+            'categories' => $categories
+        ]);
+    }
+
+    public function update($id, UpdatePostRequest $request)
+    {
+        $post = Post::findOrFail($id);    
+        $post->update($request->all());
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully');
+    }
+    
+    
+    
 
     public function store(PostStoreRequest $request){
         try {
@@ -37,7 +57,6 @@ class PostController extends Controller
         }
     }
     
-
     public function destroy(Post $post){
         try {
             if ($post) {

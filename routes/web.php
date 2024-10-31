@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompanyProductController;
 use App\Http\Controllers\LikeController;
-use App\Http\Controllers\MassalliqController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OvqatController;
 use App\Http\Controllers\PostController;
@@ -13,12 +13,23 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+// auth
+Route::get('/login',[AuthController::class,'loginPage'])->name('auth.loginPage');
+Route::post('/login',[AuthController::class,'login'])->name('auth.login');
+Route::get('/logout',[AuthController::class,'logout'])->name('auth.logout');
+
+Route::get('/register',[AuthController::class,'registerPage'])->name('auth.registerPage');
+Route::post('/register',[AuthController::class,'register'])->name('auth.register');
+
+
 #category
-Route::get('/categories',[CategoryController::class,'categories']);
-Route::get('/category-create',[CategoryController::class,'create_page']);
+Route::get('/',[CategoryController::class,'index'])->name('categories.index')->middleware('auth');
+Route::get('/category-create',[CategoryController::class,'create_page']);   
 Route::post('/category_creation',[CategoryController::class,'store']);
 Route::get('/category-edit/{category}', [CategoryController::class, 'edit']);
 Route::delete('/category-delete/{category}', [CategoryController::class, 'destroy']);
+Route::put('/category-update',[CategoryController::class,'update'])->name('category.update');
+
 
 #orders
 Route::get('/orders',[OrderController::class,'orders'])->name('order.index');
@@ -52,9 +63,11 @@ Route::delete('/product-delete/{product}', [ProductController::class, 'destroy']
 
 
 #posts
-Route::get('/posts',[PostController::class,'posts']);
+Route::get('/posts',[PostController::class,'posts'])->name('posts.index')->middleware('auth');
 Route::get('/post-create',[PostController::class,'create_page']);
 Route::post('/post_creation',[PostController::class,'store']);
+Route::get('/post-edit/{id}', [PostController::class, 'edit']);
+Route::put('/post_update/{id}', [PostController::class, 'update'])->name('post.update');
 Route::delete('/post-delete/{post}', [PostController::class, 'destroy'])->name('post.delete');
 
 
@@ -82,7 +95,7 @@ Route::delete('/company-products-delete/{companyProduct}', [CompanyProductContro
 
 
 // ingredients
-Route::get('/',[MassalliqController::class,'index'])->name('massalliq.index');
+// Route::get('/',[MassalliqController::class,'index'])->name('massalliq.index');
 // Route::get('/ingredients',[MassalliqController::class,'index'])->name('massalliq.index');
 
 

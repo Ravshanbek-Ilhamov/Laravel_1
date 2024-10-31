@@ -13,7 +13,7 @@
 <div class="content-wrapper">
     <section class="content">
         <div class="container-fluid">
-            <a href="/categories" class='btn btn-primary m-2'>Category</a>
+            <a href="/" class='btn btn-primary m-2'>Category</a>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-primary">
@@ -21,8 +21,9 @@
                             <h3 class="card-title">Edit Category</h3>
                         </div>
                         <!-- Assuming this form is for updating a category -->
-                        <form action="/category_update" method="POST">
+                        <form action="/category-update" method="POST">
                             @csrf
+                            @method('PUT')
                             <input type="hidden" name="id" value="{{ $category->id }}">
                             <div class="card-body">
                                 <!-- Name Field -->
@@ -60,7 +61,7 @@
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
-                        
+                       
                     </div>
                 </div>
             </div>

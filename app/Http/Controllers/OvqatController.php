@@ -10,7 +10,7 @@ class OvqatController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+    */
     public function index()
     {
         $ovqat = Ovqat::all();
@@ -42,7 +42,7 @@ class OvqatController extends Controller
        $ovqat = Ovqat::create($data);
        $ovqat->massalliq()->attach($ids);
 
-       return back();
+       return redirect('/')->with('success','New Food has been added');
 
     }
 

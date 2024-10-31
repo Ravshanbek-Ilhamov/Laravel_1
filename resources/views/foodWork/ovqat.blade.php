@@ -24,7 +24,43 @@
                     </button>
                 </div>
             @endif
-            <a href="/ovqat_create" class = 'btn btn-primary m-2'>Create</a>
+            {{-- <a href="/ovqat_create" class = 'btn btn-primary m-2'>Create</a> --}}
+            <a type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#OvqatCreate">
+                Create
+            </a>
+            <!-- Modal -->
+            <div class="modal fade" id="OvqatCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Update Company Product</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <label>Multiple</label>
+                                <select class="select2bs4" multiple="multiple" data-placeholder="Select a State"
+                                        style="width: 100%;">
+                                    <option>Alabama</option>
+                                    <option>Alaska</option>
+                                    <option>California</option>
+                                    <option>Delaware</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Washington</option>
+                                </select>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
@@ -84,4 +120,5 @@
         </div>
     </section>
 </div>
+
 @endsection

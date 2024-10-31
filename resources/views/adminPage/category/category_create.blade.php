@@ -6,7 +6,7 @@
 <div class="content-wrapper">
     <section class="content">
         <div class="container-fluid">
-        <a href="/categories" class='btn btn-primary m-2'>Category</a>
+        <a href="/" class='btn btn-primary m-2'>Category</a>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-primary">
